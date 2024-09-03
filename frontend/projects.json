@@ -1,0 +1,17 @@
+[
+   {
+   "title": "What to See",
+   "Description": "Bygget en nettside for sammenligning av filmer i favorittlister, ønskelister og sjangere mellommellom brukere/venner, Implementerte funksjonalitet som lar brukere dele og sammenligne filmanbefalinger. Benyttet Sanity som headless CMS for enkel håndtering av filmdata  og brukerdata.",
+   "url": "https://github.com/KhalilMS3/WhatToSee_UIN24"
+},
+   {
+   "title": "BookSeekr",
+   "Description": "Utviklet en interaktiv nettside for bokssøk ved bruk av React og JavaScript. Integrerte en API for å hente bokdata og implementerte søkefunksjonalitet for å finne bøker basert på ulike kriterier og optimalisert brukeropplevelsen gjennom et responsivt design og god bruk av UI/UX-prinsipper.",
+   "url": "https://github.com/KhalilMS3/uin23ak4_booksearch_SFOUK"
+},
+   {
+   "title": "Tourly",
+   "Description": "Deltok i et team av studenter for å utvikle en prototype for en app som kobler lokale guider med turister. Var ansvarlig for backend-utvikling ved hjelp av Java, inkludert funksjonalitet for søking av turer basert på byer og matchingsalgoritmer hvor jeg fikk erfaring med samarbeid i team og bruk av agile metoder",
+   "url": "https://github.com/KhalilMS3/uin23ak4_booksearch_SFOUK"
+}
+]
