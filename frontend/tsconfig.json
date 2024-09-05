@@ -22,7 +22,7 @@
   "include": ["src",
     "./**/*.ts", // start from root map, then go as deep as possible and find all .ts file
     "vite-env.d.ts",
-    "main.ts"],
+    "main.ts", "fetchProjects.ts", "createProject.ts"],
   "exclude": [
     "node_modules"
   ]
