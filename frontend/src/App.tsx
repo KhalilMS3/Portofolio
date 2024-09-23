@@ -1,8 +1,20 @@
-import './App.css'
+import './index.css'
+import Header from './Components/Header'
+import Projects from './Components/Projects'
+import AddProjectForm from './Components/AddProjectForm'
 
 function App() {
   
-return <h1>HEEEY</h1>
+   return (
+      <>
+         <Header />
+         <main>
+            <AddProjectForm/>
+            <Projects/>
+         </main>
+      </>
+   )
+   
 }
 
 export default App
