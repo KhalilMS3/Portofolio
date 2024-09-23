@@ -9,8 +9,8 @@ function App() {
       <>
          <Header />
          <main>
-            <AddProjectForm/>
             <Projects/>
+            <AddProjectForm/>
          </main>
       </>
    )

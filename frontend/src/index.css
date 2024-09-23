@@ -42,7 +42,6 @@ nav {
   margin: 100px auto;
   width: 88%;
   align-items: center;
-
   h2 {
     font-size: 35px;
   }
@@ -51,22 +50,26 @@ nav {
 #projectForm {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
 
+  label{
+    margin-top: 10px;
+  }
   input,
   textarea {
     border-radius: 5px;
     border: 1px solid #252525;
     padding: 5px 10px;
     font-weight: 500;
+    background-color: #ebebeb;
   }
 
   input {
     height: 35px;
   }
-  caption{
+  small{
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
+    font-style: italic;
   }
 
   .button-container {

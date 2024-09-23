@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Project } from "../types";
 
 export default function AddProjectForm() {
@@ -35,7 +35,7 @@ export default function AddProjectForm() {
     <section className="formSection">
       <h2>Legg til et nytt prosjekt</h2>
       <form onSubmit={handleSubmit} id="projectForm">
-        <label htmlFor="projectName">Prosjekt navn</label>
+        <label htmlFor="projectName">Prosjekt navn*</label>
         <input
           type="text"
           name="projectName"
@@ -45,8 +45,8 @@ export default function AddProjectForm() {
           placeholder="Prosjekt navn"
           required
         />
-        <label htmlFor="roles">Roller</label>
-        <caption>skriv inn roller med komma (,) som seprator</caption>
+        <label htmlFor="roles">Roller*</label>
+        <small>skriv inn roller med komma (,) som seprator</small>
         <input
           type="text"
           name="roles"
@@ -56,10 +56,10 @@ export default function AddProjectForm() {
           placeholder="Fullstack, UI/UX"
           required
         />
-        <label htmlFor="technologiesAndTools">Teknologier & verktøy</label>
-        <caption>
+        <label htmlFor="technologiesAndTools">Teknologier & verktøy*</label>
+        <small>
           skriv inn Teknologier og verkøty med komma (,) som seprator
-        </caption>
+        </small>
 
         <input
           type="text"
@@ -71,7 +71,7 @@ export default function AddProjectForm() {
           }
           placeholder="React, Node.js"
         />
-        <label htmlFor="projectURL">URL</label>
+        <label htmlFor="projectURL">URL*</label>
         <input
           type="text"
           name="projectURL"
@@ -81,7 +81,7 @@ export default function AddProjectForm() {
           placeholder="http://"
           required
         />
-        <label htmlFor="projectDesc">Beskrivelse</label>
+        <label htmlFor="projectDesc">Beskrivelse*</label>
         <textarea
           name="projectDesc"
           id="projectDesc"
