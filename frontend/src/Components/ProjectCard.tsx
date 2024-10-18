@@ -34,7 +34,11 @@ export default function ProjectCard(props: ProjectCardProps) {
             <li key={idx}>{technology}</li>
           ))}
         </ul>
-        <a href={projectUrl}>Github Repo</a>
+        {projectUrl.includes("github") ? (
+          <a href={projectUrl}>Github Repo</a>
+        ) : (
+          <a href={projectUrl}>Besøk nettside</a>
+        )}
       </section>
     </article>
   );
