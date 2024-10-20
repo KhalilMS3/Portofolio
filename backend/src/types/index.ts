@@ -1,5 +1,5 @@
 export type Project = {
-   projectId: number;
+   projectId?: number;
    projectName: string;
    projectDesc: string;
    roles: string[];
