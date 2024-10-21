@@ -1,7 +1,8 @@
    import { Hono } from "hono";
    import { cors } from "hono/cors";
-   import { projectRepository } from "./features/projects/projects.repository";
+   import { projectRepository, STATUS_CODES } from "./features/projects/projects.repository";
    import { z } from "zod";
+
    const app = new Hono();
 
    app.use("/*", cors());
@@ -55,7 +56,6 @@
    if (!response.success) {
       return c.json({ success: false, error: response.error.message }, 500);
    }
-   // TODO: If nothing is returend, remove data
    return c.json(response.data, 200);
    });
 
@@ -66,9 +66,26 @@
    if (!response.success) {
       return c.json({ success: false, error: response.error.message }, 404);
    }
-   // TODO: If nothing is returend, remove data
    return c.json(response.data, 200);
    });
+
+app.get("/api/projects/role/:roleName", async (c) => {
+   const roleName = c.req.param("roleName")
+
+   
+   if (!roleName) {
+      return c.json({ success: false, error: "Role name must be provided" }, 400)
+   }
+   const response = await projectRepository.getProjectsByRole(roleName)
+
+   if (!response.success) {
+      return c.json({ success: false, error: response.error.message }, 500)
+   }
+
+      return c.json({ success: true, data: response.data}, 200)
+   
+
+   })
 
    // Add a project
    app.post("/api/projects", async (c) => {
@@ -104,27 +121,44 @@
    });
 
    // Update a project
-   app.patch("/api/project/:id", async (c) => {
+  app.patch("/api/projects/:id", async (c) => {
    const id = Number(c.req.param("id"));
+
+   if (isNaN(id)) {
+      return c.json({ success: false, error: "Invalid project ID" }, 400);
+   }
+
    const project = await c.req.json();
-   const response = await projectRepository.update(id, project);
+
+   if (!project.roles || !Array.isArray(project.roles)) {
+      return c.json({ success: false, error: "roles must be provided as an array" }, 400);
+   }
+
+   const response = await projectRepository.update(id, project, project.roleIds);
+
    if (!response.success) {
       return c.json({ success: false, error: response.error.message }, 500);
    }
-   return c.json(response.data);
-   });
 
-   // Delete a project
-   app.delete("/api/project/:id", async (c) => {
-   const id = Number(c.req.param("id"));
-   const response = await projectRepository.delete(id);
-   if (!response.success) {
-      return c.json({ error: response.error.message }, 500);
-   }
-   return c.json(
-      { success: true, message: "Project deleted successfully" },
-      200
-   );
-   });
+   return c.json(response.data, 200);
+});
+
+
+  // Delete a project
+app.delete("/api/projects/:id", async (c) => {
+  const id = Number(c.req.param("id"));
+  const response = await projectRepository.delete(id);
+  
+  if (!response.success) {
+    if (response.error.code === `${STATUS_CODES.NOT_FOUND}`) {
+
+      return c.json({ success: false, error: response.error.message }, 404);
+    }
+    return c.json({ success: false, error: response.error.message }, 500);
+  }
+
+  return c.json({ success: true, message: "Project deleted successfully" }, 200);
+});
+
 
    export default app;
