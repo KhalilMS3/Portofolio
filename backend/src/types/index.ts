@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export type Project = {
    projectId?: number;
    projectName: string;
@@ -25,4 +27,13 @@ export type Result<T> =
    | Success<T>
    | Failure<T>
 
-   // KHALIL du er ferdig med setup av DB og alt i backend, tabellene er 
+export const projectSchema = z.object({
+projectName: z.string(),
+projectDesc: z.string(),
+roles: z.array(z.string()),
+technologies: z.array(z.string()),
+projectUrl: z.string(),
+publishedAt: z.string(),
+public: z.boolean(),
+status: z.string(),
+})

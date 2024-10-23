@@ -37,3 +37,9 @@ export const dropTables = (db: DB) => {
       `
       )
 }
+
+export const deleteAllRoles = (db: DB) => {
+  db.exec(`
+    DELETE FROM Roles
+    `)
+}

@@ -1,9 +1,9 @@
 import { DB } from "./db";
-import { createTables, dropTables } from "./tables";
+import { createTables, deleteAllRoles, dropTables } from "./tables";
 
 export const setup = async (db: DB) => {
    
    await createTables(db)
-   // await dropTables(db)
+   await deleteAllRoles(db)
    // seed her
 }
