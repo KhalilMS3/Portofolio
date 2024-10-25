@@ -38,8 +38,11 @@ export const dropTables = (db: DB) => {
       )
 }
 
-export const deleteAllRoles = (db: DB) => {
+export const deleteContent = (db: DB) => {
   db.exec(`
-    DELETE FROM Roles
+    DELETE FROM Roles;
+    DELETE FROM Projects;
+    DELETE FROM ProjectRoles;
+    DELETE FROM sqlite_sequence;
     `)
 }
