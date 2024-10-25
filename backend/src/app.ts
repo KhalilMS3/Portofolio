@@ -1,9 +1,9 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { date, z } from "zod";
+import { z } from "zod";
 import { projectsService } from "./features/projects/projects.service";
-import { Result, Project, projectSchema } from "./types";
-
+import { Result } from "./types/types";
+import { Project } from "./features/projects/projects.schema";
 const app = new Hono();
 
 app.use("/*", cors());

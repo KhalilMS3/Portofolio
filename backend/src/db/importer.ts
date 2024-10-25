@@ -1,5 +1,5 @@
 import fs from 'fs/promises';
-import { projectSchema } from "../types";
+import { projectSchema } from "../types/types";
 
 async function loadProjectsFromFile(path: string) {
    try {
