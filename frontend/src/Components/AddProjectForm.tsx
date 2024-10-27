@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Project } from "../types";
+import { Project } from "../types/projects.types";
 
 export default function AddProjectForm() {
   const [project, setProject] = useState<Project | null>(null);
@@ -15,7 +15,7 @@ export default function AddProjectForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newProject: Project ={
+    const newProject: Project = {
       projectName: projectName,
       roles: roles,
       technologies: technologies,
@@ -23,7 +23,7 @@ export default function AddProjectForm() {
       projectUrl: projectUrl,
     };
 
-    setProject(newProject)
+    setProject(newProject);
   };
   useEffect(() => {
     if (project) {
