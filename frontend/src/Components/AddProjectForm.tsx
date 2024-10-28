@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Project } from "../types/projects.types";
+import { API_BASE } from "../config/urls";
 
 export default function AddProjectForm() {
   const [project, setProject] = useState<Project | null>(null);
@@ -8,10 +9,23 @@ export default function AddProjectForm() {
   const [technologies, setTechnologies] = useState<string[]>([]);
   const [projectDesc, setProjectDesc] = useState("");
   const [projectUrl, setProjectUrl] = useState("");
+  const [publishedAt, setPublishedAt] = useState("");
+  const [isPublic, setIsPublic] = useState(false);
+  const [status, setStatus] = useState("Draft");
 
   const handleCommaSeperatedInput = (input: string) => {
     return input.split(",").map((item) => item.trim());
   };
+  const clearFormFields = () => {
+    setProjectName("")
+    setRoles([])
+    setTechnologies([])
+    setProjectDesc("")
+    setProjectUrl("")
+    setPublishedAt("")
+    setIsPublic(false)
+    setStatus("Draft")
+  }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -21,14 +35,38 @@ export default function AddProjectForm() {
       technologies: technologies,
       projectDesc: projectDesc,
       projectUrl: projectUrl,
+      publishedAt: publishedAt,
+      public: isPublic,
+      status: status,
     };
 
     setProject(newProject);
+    clearFormFields()
   };
   useEffect(() => {
     if (project) {
       console.log("Project submitted:", project);
+      fetch(`${API_BASE}/projects`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(project)
+      })
+        .then((response) => {
+          if (!response.ok) {
+          console.error("Falid to create project")
+          }
+          return response.json()
+        })
+        .then((data) => {
+          console.log("Project created successfully:", data)
+        }).catch((error) => {
+        console.error("Error creating project", error)
+        })
+      
     }
+
   }, [project]);
 
   return (
@@ -81,6 +119,25 @@ export default function AddProjectForm() {
           placeholder="http://"
           required
         />
+        <label htmlFor="publishedAt">Publiseringsdato*</label>
+        <input
+          type="date"
+          name="publishedAt"
+          id="publishedAt"
+          value={publishedAt}
+          onChange={(e) => setPublishedAt(e.target.value)}
+          required
+        />
+        <label htmlFor="status">Status*</label>
+        <select name="status" id="status"
+          value={status}
+          onChange={(e) => { setStatus(e.target.value) }}
+          required>
+          <option value="draft">Draft</option>
+          <option value="published">Published</option>
+        </select>
+        <label htmlFor="public">Tilgjenglig/Offentlig*</label>
+        <input type="checkbox" name="public" id="public" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />
         <label htmlFor="projectDesc">Beskrivelse*</label>
         <textarea
           name="projectDesc"
