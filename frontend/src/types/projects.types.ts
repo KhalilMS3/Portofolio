@@ -26,3 +26,15 @@ export const validateProject = (data: unknown) => {
   }
 };
 
+export type ProjectCardProps = {
+  projectId: number | undefined;
+  projectName: string;
+  projectDesc: string;
+  roles: string[];
+  technologies: string[];
+  projectUrl: string;
+  publishedAt: string;
+  isPublic: boolean;
+  status: string
+};
+

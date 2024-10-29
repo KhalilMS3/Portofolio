@@ -1,22 +1,15 @@
-import './index.css'
-import Header from './Components/Header'
-import Projects from './Components/Projects'
-import AddProjectForm from './Components/AddProjectForm'
-import Footer from './Components/Footer'
+import "./index.css";
+import Layout from "./Components/Layout/Layout";
+import ProjectPage from "./Components/Project/ProjectPage";
 
 function App() {
-  
-   return (
-      <>
-         <Header />
-         <main>
-            <Projects/>
-            <AddProjectForm/>
-         </main>
-         <Footer/>
-      </>
-   )
-   
+return (
+   <>
+   <Layout>
+      <ProjectPage />
+   </Layout>
+   </>
+);
 }
 
-export default App
+export default App;

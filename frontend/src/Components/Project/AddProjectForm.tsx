@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Project } from "../types/projects.types";
-import { API_BASE } from "../config/urls";
+import { Project } from "../../types/projects.types";
+import { API_BASE } from "../../config/urls";
 
 export default function AddProjectForm() {
   const [project, setProject] = useState<Project | null>(null);
@@ -17,15 +17,15 @@ export default function AddProjectForm() {
     return input.split(",").map((item) => item.trim());
   };
   const clearFormFields = () => {
-    setProjectName("")
-    setRoles([])
-    setTechnologies([])
-    setProjectDesc("")
-    setProjectUrl("")
-    setPublishedAt("")
-    setIsPublic(false)
-    setStatus("Draft")
-  }
+    setProjectName("");
+    setRoles([]);
+    setTechnologies([]);
+    setProjectDesc("");
+    setProjectUrl("");
+    setPublishedAt("");
+    setIsPublic(false);
+    setStatus("Draft");
+  };
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -41,7 +41,7 @@ export default function AddProjectForm() {
     };
 
     setProject(newProject);
-    clearFormFields()
+    clearFormFields();
   };
   useEffect(() => {
     if (project) {
@@ -49,24 +49,23 @@ export default function AddProjectForm() {
       fetch(`${API_BASE}/projects`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(project)
+        body: JSON.stringify(project),
       })
         .then((response) => {
           if (!response.ok) {
-          console.error("Falid to create project")
+            console.error("Falid to create project");
           }
-          return response.json()
+          return response.json();
         })
         .then((data) => {
-          console.log("Project created successfully:", data)
-        }).catch((error) => {
-        console.error("Error creating project", error)
+          console.log("Project created successfully:", data);
         })
-      
+        .catch((error) => {
+          console.error("Error creating project", error);
+        });
     }
-
   }, [project]);
 
   return (
@@ -101,8 +100,8 @@ export default function AddProjectForm() {
 
         <input
           type="text"
-          name="technologies"
-          id="technologies"
+          name="technologiesAndTools"
+          id="technologiesAndTools"
           value={technologies.join(",")}
           onChange={(e) =>
             setTechnologies(handleCommaSeperatedInput(e.target.value))
@@ -129,15 +128,26 @@ export default function AddProjectForm() {
           required
         />
         <label htmlFor="status">Status*</label>
-        <select name="status" id="status"
+        <select
+          name="status"
+          id="status"
           value={status}
-          onChange={(e) => { setStatus(e.target.value) }}
-          required>
+          onChange={(e) => {
+            setStatus(e.target.value);
+          }}
+          required
+        >
           <option value="draft">Draft</option>
           <option value="published">Published</option>
         </select>
         <label htmlFor="public">Tilgjenglig/Offentlig*</label>
-        <input type="checkbox" name="public" id="public" checked={isPublic} onChange={(e) => setIsPublic(e.target.checked)} />
+        <input
+          type="checkbox"
+          name="public"
+          id="public"
+          checked={isPublic}
+          onChange={(e) => setIsPublic(e.target.checked)}
+        />
         <label htmlFor="projectDesc">Beskrivelse*</label>
         <textarea
           name="projectDesc"

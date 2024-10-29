@@ -31,9 +31,8 @@ const fetchProjectsFromServer = async () => {
          }
       }
    useEffect(() => {
-      
       fetchProjectsFromServer()
    }, [role])
 
-   return {projects, loading, error}
+   return {projects, setProjects, loading, error}
 }

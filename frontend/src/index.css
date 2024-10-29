@@ -199,6 +199,12 @@ nav {
           transition: padding 0.2s ease-in-out;
         }
       }
+      .remove-button{
+        background-color: rgb(162, 43, 43);
+        color: #f8f8f8;
+        margin-left: 10px;
+        transition: all .3s ease-in;
+      }
     }
   }
 }
