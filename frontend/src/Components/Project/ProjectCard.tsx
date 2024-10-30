@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ProjectCardProps } from "../../types/projects.types";
+import { format } from "date-fns";
+import { FaCalendarAlt, FaCheckCircle, FaEye} from "react-icons/fa";
 
 export default function ProjectCard(
   props: ProjectCardProps & { onRemoveProject: (id: number) => void }
@@ -20,7 +22,7 @@ export default function ProjectCard(
     isPublic = false,
     status = "Draft",
   } = props;
-
+  const formattedDate = format(new Date(publishedAt), "dd.MM.yyyy")
   return (
     <article
       className="project-card"
@@ -30,6 +32,18 @@ export default function ProjectCard(
       <section className="project-info">
         <h4 className="project-name">{projectName}</h4>
         <p className="project-desc">{projectDesc}</p>
+        <section className="project-micro-info">
+          <p>
+            <FaCalendarAlt /> <b>Publisering dato:</b> {formattedDate}
+          </p>
+          <p>
+            <FaEye /> <b>Offentlig: </b>
+            {isPublic ? "Ja" : "Nei"}
+          </p>
+          <p>
+            <FaCheckCircle /> <b>Status:</b> {status}
+          </p>
+        </section>
       </section>
       <span className="divider"></span>
       <section className="project-details">
