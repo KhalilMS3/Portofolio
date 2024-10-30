@@ -100,7 +100,7 @@ nav {
   }
   .micro-info-group{
     display: flex;
-    gap: 150px;
+    gap: 70px;
     align-items: baseline;
   }
   .micro-info{
@@ -120,6 +120,7 @@ nav {
   background-color: #ebebeb;
   font-size: 15px;
   border-radius: 5px;
+  border: 1px solid #252525;
 }
 
 #public{
