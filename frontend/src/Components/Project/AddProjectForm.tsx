@@ -176,6 +176,7 @@ export default function AddProjectForm() {
                 required
               >
                 <option value="draft">Draft</option>
+                <option value="completed">Completed</option>
                 <option value="published">Published</option>
               </select>
             </div>

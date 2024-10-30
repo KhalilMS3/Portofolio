@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ProjectCardProps } from "../../types/projects.types";
 import { format } from "date-fns";
-import { FaCalendarAlt, FaCheckCircle, FaEye} from "react-icons/fa";
 
 export default function ProjectCard(
   props: ProjectCardProps & { onRemoveProject: (id: number) => void }
@@ -34,14 +33,16 @@ export default function ProjectCard(
         <p className="project-desc">{projectDesc}</p>
         <section className="project-micro-info">
           <p>
-            <FaCalendarAlt /> <b>Publisering dato:</b> {formattedDate}
+            {" "}
+            📅 <b>Publisering dato:</b> {formattedDate}
           </p>
           <p>
-            <FaEye /> <b>Offentlig: </b>
+            {" "}
+            👁️ <b>Offentlig: </b>
             {isPublic ? "Ja" : "Nei"}
           </p>
           <p>
-            <FaCheckCircle /> <b>Status:</b> {status}
+            ✅ <b>Status:</b> {status}
           </p>
         </section>
       </section>
@@ -60,7 +61,7 @@ export default function ProjectCard(
           ))}
         </ul>
         {projectUrl.includes("github") ? (
-          <a href={projectUrl}>Github Repo</a>
+          <a href={projectUrl}> Github Repo</a>
         ) : (
           <a href={projectUrl}>Besøk nettside</a>
         )}
