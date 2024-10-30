@@ -118,36 +118,46 @@ export default function AddProjectForm() {
           placeholder="http://"
           required
         />
-        <label htmlFor="publishedAt">Publiseringsdato*</label>
-        <input
-          type="date"
-          name="publishedAt"
-          id="publishedAt"
-          value={publishedAt}
-          onChange={(e) => setPublishedAt(e.target.value)}
-          required
-        />
-        <label htmlFor="status">Status*</label>
-        <select
-          name="status"
-          id="status"
-          value={status}
-          onChange={(e) => {
-            setStatus(e.target.value);
-          }}
-          required
-        >
-          <option value="draft">Draft</option>
-          <option value="published">Published</option>
-        </select>
-        <label htmlFor="public">Tilgjenglig/Offentlig*</label>
-        <input
-          type="checkbox"
-          name="public"
-          id="public"
-          checked={isPublic}
-          onChange={(e) => setIsPublic(e.target.checked)}
-        />
+        <section className="micro-info-group">
+          <div className="micro-info">
+            <label htmlFor="publishedAt">Publiseringsdato*</label>
+            <input
+              type="date"
+              name="publishedAt"
+              id="publishedAt"
+              value={publishedAt}
+              onChange={(e) => setPublishedAt(e.target.value)}
+              required
+            />
+          </div>
+          <div className="micro-info">
+            <label htmlFor="status">Status*</label>
+            <select
+              name="status"
+              id="status"
+              value={status}
+              onChange={(e) => {
+                setStatus(e.target.value);
+              }}
+              required
+            >
+              <option value="draft">Draft</option>
+              <option value="published">Published</option>
+            </select>
+          </div>
+
+          <div className="micro-info">
+
+          <label htmlFor="public">Tilgjenglig/Offentlig*</label>
+          <input
+            type="checkbox"
+            name="public"
+            id="public"
+            checked={isPublic}
+            onChange={(e) => setIsPublic(e.target.checked)}
+            />
+            </div>
+        </section>
         <label htmlFor="projectDesc">Beskrivelse*</label>
         <textarea
           name="projectDesc"
